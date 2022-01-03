@@ -1,6 +1,12 @@
+# Méta BERA
+
+Pour rendre accessibles les BERA (Bulletins d'Estimation de Risques d'Avalanches).
+
+Exemple : https://bulletin.metabera.ovh/bera.php?massif=BAUGES
+
 ## Problème
 
-Les BERA (Bulletins d'Estimation de Risques d'Avalanches) de Météo France sont publics, c'est bien. Mais il ne sont pas directement accessibles via une URL, c'est mal.
+Les BERA de Météo France sont publics, c'est bien. Mais il ne sont pas directement accessibles via une URL, c'est mal.
 
 Il devient alors beaucoup plus compliqué de :
 - les partager (ce qui est un comble pour une information publique de sécurité vitale !),
@@ -11,11 +17,11 @@ Il devient alors beaucoup plus compliqué de :
 
 Le site [metaskirando](https://metaskirando.ovh/Nivo.php) s'est déjà occupé de récupérer les BERA pour les mettre à disposition du plus grand nombre, merci à eux !
 
-Mais suite à mon besoin d'intégration des BERA dans une iframe, avec prise en compte du https et de la hauteur du rendu, j'ai fait un micro script permettant de récupérer les BERA :
+Mais suite à mon besoin d'intégration des BERA dans une iframe, avec prise en compte du https et de la hauteur du rendu, j'ai fait un micro script permettant d'accéder aux BERA :
 - via une url fixe,
 - utilisant les derniers xslt et css de Météo France,
-- toujours à la dernière version (avec la gestion simplifiée d'un cache),
-- avec du js permettant une meilleure intégration dans une iframe.
+- toujours à la dernière version (avec une gestion simplifiée de cache),
+- avec du javascript permettant une meilleure intégration dans une iframe.
 
 Ce script est un POC, il est simple et moche, mais il fonctionne.
 
@@ -34,10 +40,10 @@ Accéder ensuite à l'url `http://localhost:8000/bera.php?massif=CHAMPSAUR` en p
 
 Afin de pouvoir gérer correctement l'affichage des BERA dans une iframe, le script utilise la librairie JS [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer).
 
-Télécharger le script [iframeResizer.min.js](https://raw.githubusercontent.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.min.js) et ajouter ces quelques lignes dans la page contenant l'iframe pointant sur le BERA :
+Inclure le script [iframeResizer.min.js](https://raw.githubusercontent.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.min.js) et ajouter ces quelques lignes dans la page contenant l'iframe pointant sur le BERA :
 
 ```html
-<iframe id="bera" src="http://localhost:8000/bera.php?massif=OISANS"></iframe>
+<iframe id="bera" src="https://bulletin.metabera.ovh/bera.php?massif=OISANS"></iframe>
 
 <script src="js/iframeResizer.min.js"></script>
 <script>
