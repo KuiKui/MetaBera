@@ -51,7 +51,7 @@ Inclure le script [iframeResizer.min.js](https://raw.githubusercontent.com/david
 </script>
 ```
 
-L'iframe s'affiche ensuite automatiquement à la bonne hauteur et gère correctement le défilement.
+L'iframe s'affiche ensuite automatiquement à la bonne hauteur et gère correctement le défilement, comme par exemple sur https://lagrave.live
 
 ## Massifs disponibles
 
