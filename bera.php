@@ -60,7 +60,7 @@ if (!in_array($massif, array_keys($correspondanceMassif))) {
     throw new \Exception('Massif non reconnu');
 }
 
-$fichierBera = "cache/$massif/bera.xml";
+$fichierBera = "cache/$massif/bera.html";
 
 // Régénération du cache si :
 // - Le fichier n'existe pas.
@@ -100,10 +100,14 @@ function récupérationInformationsMassif($cléApi, $massif, $correspondanceMass
         récupérationRessourceViaAPI($cléApi, $ressource, $destination);
     }
 
-    // Modification à l'arrache pour faire correspondre le xml à l'arborescence.
-    $contenu = file_get_contents($répertoireMassif.'/bera.xml');
-    $contenu = str_replace('../web/bra.xslt', '../../bera.xslt', $contenu);
-    file_put_contents($répertoireMassif.'/bera.xml', $contenu);
+    // Génération du fichier html à partir du xml + xsl
+    $xml = new DOMDocument();
+    $xml->load($répertoireMassif.'/bera.xml');
+    $xsl = new DOMDocument();
+    $xsl->load('bera.xslt');
+    $proc = new XSLTProcessor();
+    $proc->importStyleSheet($xsl);
+    file_put_contents($répertoireMassif.'/bera.html', $proc->transformToXML($xml));
 }
 
 function récupérationRessourceViaAPI($cléAPI, $ressource, $destination)

@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <!--xsl:output method="html" indent="yes"  doctype-public="-//W3C//DTD HTML 4.01//EN" doctype-system="http://www.w3.org/TR/html4/strict.dtd" /-->
   <xsl:output method="html" indent="yes"/>
-	<xsl:param name="urlCss"/>
 	<xsl:param name="urlBlob"/>
-	<xsl:param name="CheminPicto"/>
-  <!-- Version -->
-  <!-- Version 3.0.7 -->
-  <!-- VersionExe 3.0 -->
-  <!-- DateVersion 29/11/2016 -->
-  <!-- Version -->
 
   <!--Chemin acces css -->
   <xsl:variable name="urlCss">
@@ -23,20 +15,28 @@
 
   <!-- Canevas général des diverses versions -->
   <xsl:template match="BULLETINS_NEIGE_AVALANCHE">
-        <link rel="stylesheet" type="text/css">
-          <xsl:attribute name="href">
-            <xsl:value-of select="$urlCss"/>
-          </xsl:attribute>
-        </link>
-        <div id="BRA">
-          <xsl:for-each select="BRA">
-            <xsl:call-template name="trame"/>
-          </xsl:for-each>
-          <xsl:if test="@ID!=''">
-            <xsl:call-template name="trame"/>
-          </xsl:if>
-        </div>
-        <script src="../../js/iframeSizer.contentWindow.min.js"></script>
+      <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
+      <html lang="fr">
+          <head>
+              <title>MetaBERA</title>
+              <link rel="stylesheet" type="text/css">
+                  <xsl:attribute name="href">
+                      <xsl:value-of select="$urlCss"/>
+                  </xsl:attribute>
+              </link>
+          </head>
+          <body>
+            <div id="BRA">
+                <xsl:for-each select="BRA">
+                    <xsl:call-template name="trame"/>
+                </xsl:for-each>
+                <xsl:if test="@ID!=''">
+                    <xsl:call-template name="trame"/>
+                </xsl:if>
+            </div>
+            <script src="../../js/iframeSizer.contentWindow.min.js"></script>
+          </body>
+      </html>
   </xsl:template>
 
 
