@@ -1,12 +1,12 @@
 # Méta BERA
 
-Nano service pour rendre accessibles les BERA (Bulletins d'Estimation de Risques d'Avalanches).
+Nano service pour rendre accessibles les BERA (Bulletins d'Estimation de Risques d'Avalanches) sans avoir à passer par l'API de Météo France.
 
-Exemple : https://bulletin.metabera.ovh/bera.php?massif=BAUGES
+Exemple : https://bulletin.metabera.ovh/bera.php?massif=CHAMPSAUR
 
 ## Problème
 
-Les BERA de Météo France sont publiques, c'est bien. Mais il ne sont pas directement accessibles via une URL, c'est mal.
+Les BERA de Météo France sont publics, c'est bien. Mais il ne sont pas directement accessibles via une URL, c'est mal.
 
 Il devient alors beaucoup plus compliqué de :
 - les partager (ce qui est un comble pour une information publique de sécurité vitale !),
@@ -17,10 +17,10 @@ Il devient alors beaucoup plus compliqué de :
 
 Le site [metaskirando](https://metaskirando.ovh/Nivo.php) s'est déjà occupé de récupérer les BERA pour les mettre à disposition du plus grand nombre, merci à eux !
 
-Mais suite à mon besoin d'intégration des BERA dans une iframe, avec prise en compte du https et de la hauteur du rendu, j'ai fait un micro script permettant d'accéder aux BERA :
+Mais suite à mon besoin d'intégration des BERA dans une iframe, avec prise en compte du https et de la hauteur du rendu, j'ai fait ce script permettant d'accéder aux BERA :
 - via une url fixe,
 - utilisant les derniers xslt et css de Météo France,
-- sans besoin d'avoir une clé d'API Météo France,
+- sans avoir besoin d'une clé d'API Météo France (qui nécessite une inscription),
 - avec une gestion de cache de 10 minutes pour éviter de spammer l'API de Météo France,
 - avec du javascript permettant une meilleure intégration dans une iframe.
 
@@ -36,6 +36,8 @@ php -S localhost:8000
 ```
 
 Accéder ensuite à l'url `http://localhost:8000/bera.php?massif=CHAMPSAUR` en précisant le massif parmi les 36 disponibles (voir ci-après).
+
+Remarque : il est nécessaire d'avoir les extensions PHP `curl` et `xsl` activées (c'est le cas par défaut avec le serveur web PHP de dev).
 
 ## Configuration dans une iframe
 
@@ -60,3 +62,4 @@ L'iframe s'affiche ensuite automatiquement à la bonne hauteur et gère correcte
 
 ## Résultat
 
+![](https://github.com/KuiKui/MetaBera/assets/748924/efd8d033-ae29-434d-8136-aba8762a37f0)
