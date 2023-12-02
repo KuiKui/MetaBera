@@ -25,7 +25,7 @@
                   </xsl:attribute>
               </link>
           </head>
-          <body>
+          <body style="background-color:#FFF">
             <div id="BRA">
                 <xsl:for-each select="BRA">
                     <xsl:call-template name="trame"/>
